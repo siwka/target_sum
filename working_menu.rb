@@ -18,7 +18,12 @@ for i in (0..prices.length-1) do
 	qty_max << (total / prices[i])
 end
 
-perm = [0, 1, 2, 3, 4, 5, 6, 7].repeated_permutation(6).to_a
+if ARGV.first = 'data.csv'
+	perm = [0, 1, 2, 3, 4, 5, 6, 7].repeated_permutation(6).to_a
+else
+	perm = [0, 1, 2, 3, 4, 5, 6, 7].repeated_permutation(7).to_a
+end	
+
 
 perm.select! do |arr|
 	arr.each_with_index { |a,i| a[i]<=qty_max[i] }

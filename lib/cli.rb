@@ -10,6 +10,7 @@ class Cli
 		CSV.foreach(ARGV.first, headers: false) do |row|
 			@csv_to_a << row.map!{ |e| e.gsub(/[$]/,'') }
 		end
+		@csv_to_a
 	end
 
 	def read_target

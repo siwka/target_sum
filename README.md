@@ -22,6 +22,9 @@ Data is given in csv file, in each row there is name and value
   3. Creating arrays for other constrains
   4. Last constrain set of arrays contains all candidates for solution, will be used to find all solutions (quantity of numbers considered as solution to equation); an option: might be stoped upon finding first.
 
-File working_menu.rb is a working version of the final program. Improve program is temporary broken after refactoring :-/ it means not enough tests.
+File working_menu.rb is a working version of the final program. Improved program at this stage works for limited numbers accordingly to common sense of customers. Temporary limitations: 7 is a maximum number of duplicates for max 8 different choices.
 
 note: README.md will be improved after learning how to use mathematical symbols here.
+
+Run:
+ruby working_menu.rb data.csv
