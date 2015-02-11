@@ -57,10 +57,10 @@ describe Array do
     expect(result).to eq [[1, "0.02"], [2, "0.06"]]
   end
 
-  it "combine_with(menu, prices)" do #siwka zmienic opisy "it"
+  it "match quantites with dishes names and its prices)" do
     menu = {"french fries"=>"2.75", "side salad"=>"3.35", "hot wings"=>"3.55", "mozzarella"=>"4.20", "sampler plate"=>"5.80", "sss"=>"4.20"}
     prices = ["2.75", "4.20"]
-    result = [1, 2].combine_with(menu, prices)
+    result = [1, 2].match_with(menu, prices)
   	expect(result).to eq [[1, ["french fries"], "2.75"], [2, ["mozzarella", "sss"], "4.20"]]
   end
 
@@ -70,7 +70,7 @@ describe Array do
     expect(result).to eq [1, 2, 3]
   end
 
-  it "match_prices_with_entrees(menu, prices)" do
+  it "match_prices_with_entrees for one result" do
   	results = [[0, 0, 0, 0, 0, 7]]
     menu = {"expensive plate"=>"15.80", "mixed fruit"=>"2.15", "french fries"=>"2.75", "side salad"=>"3.35", "hot wings"=>"3.55", "mozzarella sticks"=>"4.20", "sampler plate"=>"5.80"}
     prices = ["5.80", "4.20", "3.55", "3.35", "2.75", "2.15"]
@@ -78,7 +78,7 @@ describe Array do
     expect(result).to eq [[7, ["mixed fruit"], "2.15"]]
   end    
 
-  it "match_prices_with_entrees(menu, prices)" do
+  it "match_prices_with_entrees for two results" do
   	results = [[0, 0, 0, 0, 0, 7], [1, 0, 2, 0, 0, 1]]
     menu = {"expensive plate"=>"15.80", "mixed fruit"=>"2.15", "french fries"=>"2.75", "side salad"=>"3.55", "hot wings"=>"3.55", "mozzarella sticks"=>"4.20", "sampler plate"=>"5.80"}
     prices = ["5.80", "4.20", "3.55", "3.35", "2.75", "2.15"]

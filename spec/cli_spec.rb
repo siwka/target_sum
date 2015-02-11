@@ -5,8 +5,8 @@ describe Cli do
 
  	xit "should convert first row from input to an integer" do
  		# csv = ['15.01']
- 		allow(cli.read_csv_file).to receive(['15.01']).and_return(1501)
- 		expect(cli.read_target).to eq(1501)
+ 		allow(cli.read_csv_file).to receive(['15.01']).and_return(15.01)
+ 		expect(cli.read_target).to eq(15.01)
  	end
 
   it "should exit cleanly when no argv is used" do
@@ -42,10 +42,13 @@ describe Cli do
   end
 
   it "displays message there is solution and list of menus" do
-  	target = 2375 #siwka /100
+  	target = 2375
   	menus = {"frog legs" => 2375 }
-  	expect(STDOUT).to receive(:puts).with("\nFor target price of $#{'%.02f' % target.fdiv(100)} there are following menus of dishes:\n\n")
-  	expect(STDOUT).to receive(:puts).with("#{menus}")  	
+    expect(STDOUT).to receive(:puts).with(">>>>>>>>>> * <<<<<<<<<<<<")
+  	expect(STDOUT).to receive(:puts).with("\nFOR THE TARGET PRICE OF $#{'%.02f' % target.fdiv(100)}, CHOICES ARE:\n\n")
+    expect(STDOUT).to receive(:puts).with(">>>>>>>>>>>  1 - option  <<<<<<<<<<<<<")
+    expect(STDOUT).to receive(:puts).with("\nQTY\tENTREE:\t\tPRICE\n\n")
+    expect(STDOUT).to receive(:puts).with("===================================================")
 
   	cli.announce_combination(target, menus)
   end

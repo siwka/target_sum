@@ -10,7 +10,6 @@ class Cli
     CSV.foreach(ARGV.first, headers: false) do |row|
       @csv_to_a << row.map!{ |e| e.gsub(/[$]/,'') }
     end
-    # @csv_to_a
   end
 
   def read_target
@@ -60,10 +59,22 @@ class Cli
 
   def announce_no_combination(target)
     puts "\nThere is no combination of dishes that will be equal in cost to the target price of $#{'%.02f' % target.fdiv(100)}.\n\n"
-  end  
+  end 
 
   def announce_combination(target, results)
-    puts "\nFor target price of $#{'%.02f' % target.fdiv(100)} there are following menus of dishes:\n\n"
-     puts "#{results}"
+  	puts ">>>>>>>>>> * <<<<<<<<<<<<"  	
+    puts "\nFOR THE TARGET PRICE OF $#{'%.02f' % target.fdiv(100)}, CHOICES ARE:\n\n"
+    display_results(results)
   end
+
+  def display_results(results)
+  	results.each_with_index do |r,i|
+  		puts ">>>>>>>>>>>  #{i+1} - option  <<<<<<<<<<<<<"
+  		puts "\nQTY\tENTREE:\t\tPRICE\n\n"
+  		r.each do |s|
+  			print "#{s[0]}  #{s[1].join(', ')}\t$#{s[2]}\n\n" if s[1].kind_of?(Array)
+  		end
+  	end
+    puts "==================================================="
+  end  
 end
