@@ -2,7 +2,7 @@ require 'calculator'
 require 'array'
 
 class Quest
-attr_accessor :cli, :calculator, :prices, :target
+attr_accessor :cli, :calculator#, :prices, :target siwka
 
   def initialize(cli)
   	@calculator = Calculator.new
@@ -12,10 +12,10 @@ attr_accessor :cli, :calculator, :prices, :target
   end
 
   def start
-  	@cli.exit_with_error_message unless @cli.arguments_any?
-  	@cli.read_csv_file
+  	cli.exit_with_error_message unless @cli.arguments_any?
+  	cli.read_csv_file
   	@target = @cli.read_target
-  	@cli.announce_bad_target if @target == 0 # add_options prices vs total, etc
+  	cli.announce_bad_target if @target == 0 # add_options prices vs total, etc
   	@full_menu = @cli.read_menu
   	@prices = @full_menu.values.read_prices.reject_expensive(@target)
   end
@@ -36,30 +36,29 @@ attr_accessor :cli, :calculator, :prices, :target
           when 8 then 6
           when 9 then 5
           when 10, 11 then 3
-          when 12, 13, 14 then 2 # maybe 4 for 12
+          when 12 then 4
+          when 13, 14 then 2
           else
             puts "\nCHOOSE SHORTER MENU!\n\n"
             exit(2)
         end
-      end  	
+      end	
       # ------------------------------------>
-  		@cli.statistics(@full_menu, @target, max_qty)
-      @cli.display_machine_thinking
+  		cli.statistics(@full_menu, @target, max_qty)
+      cli.display_machine_thinking
 
 			perm = (0..max_qty).to_a.repeated_permutation(nr_of_prices).to_a
-      @cli.display_nr_of_combinations(perm.count)
+      cli.display_nr_of_combinations(perm.count)
 			perm.reject_each_more_than(limit_entree_qty)
-			perm.check_subset_sum(@prices, @target)
+			@results = perm.check_subsets_for_sum(@prices, @target)
   	end
   end
 
 	def finish
-		if calculator.wrong_data?
-			cli.announce_bad_data#()
-		elsif !calculator.combination_any?
+		if @results.empty?
 			cli.announce_no_combination(@target)
 		else
-			cli.announce_combination(@target, menus)
+			cli.announce_combination(@target, @results)
 		end
-	end 
+	end
 end

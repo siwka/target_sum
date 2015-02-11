@@ -16,12 +16,14 @@ class Array
     self.select! { |arr| arr.each_less(limits_arr) }
   end
 
-  def check_subset_sum(prices, target)
+  def check_subsets_for_sum(prices, target)
+    results = []
     self.each do |a|
       tmp = a.zip(prices).map { |x,y| x*y } unless prices.nil?
       suma = tmp.reduce(:+) unless tmp.nil?
-      puts "Solution exists! For #{a} and target price=#{suma}"  if suma == target
+      results << a if suma == target
     end
+    results
   end
 
   def odd_values

@@ -24,7 +24,7 @@
 <p>File working_menu.rb is a working version of the final program. Improved program at this stage works for limited numbers accordingly to common sense of customers. Hard coded limitations are temporary &amp; necessary for calculation length purpose.
 This is before different way will be provided to generalize permutation with repetition gradually.</p>
 
-<p>At this moment I am not sure if mathematical or coding solution should be my priority.</p>
+<p>Program does not check for csv file expected data format.</p>
 
 <p>note: README.md will be improved after learning how to use mathematical symbols here.</p>
 

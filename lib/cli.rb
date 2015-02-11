@@ -42,9 +42,9 @@ class Cli
     puts 
     display_menu(menu)
     puts
-    puts "Your Target Price is: $#{sprintf('%.02f',target_price)}"
+    puts "Your Target Price is: $#{'%.02f' % target_price.fdiv(100)}"
     puts "Limit of quantities for the same dish = #{max_qty}"
-    puts "Number of Entrees to chose from: #{menu.length}"
+    puts "Number of Entrees to chose from: #{menu.length}\n\n"
   end
 
   def display_machine_thinking
@@ -54,16 +54,16 @@ class Cli
   end
 
   def display_nr_of_combinations(count)
-    puts "Number of possible dish combinations to consider: #{count}"
-    puts "Although we will calculate less thant that."
+    puts "\n\nNumber of possible dish combinations: #{count}."
+    puts "Removing options that don't need to be considered.\n\n"
   end
 
   def announce_no_combination(target)
-    puts "\nThere is no combination of dishes that will be equal in cost to the target price of $#{sprintf('%.02f',target)}.\n\n"
+    puts "\nThere is no combination of dishes that will be equal in cost to the target price of $#{'%.02f' % target.fdiv(100)}.\n\n"
   end  
 
-  def announce_combination(target, menus)
-    puts "\nFor target price of $#{sprintf('%.02f',target)} there are following menus of dishes:\n\n"
-     puts "#{menus}"
+  def announce_combination(target, results)
+    puts "\nFor target price of $#{'%.02f' % target.fdiv(100)} there are following menus of dishes:\n\n"
+     puts "#{results}"
   end
 end

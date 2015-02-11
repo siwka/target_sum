@@ -35,16 +35,16 @@ describe Cli do
   end
 
   it "displays message that there is no solution for target of $15.60" do
-  	target = 15.60
-  	expect(STDOUT).to receive(:puts).with("\nThere is no combination of dishes that will be equal in cost to the target price of $#{sprintf('%.02f',target)}.\n\n")
+  	target = 1560
+  	expect(STDOUT).to receive(:puts).with("\nThere is no combination of dishes that will be equal in cost to the target price of $#{'%.02f' % target.fdiv(100)}.\n\n")
 
   	cli.announce_no_combination(target)
   end
 
   it "displays message there is solution and list of menus" do
-  	target = 23.75 #siwka /100
+  	target = 2375 #siwka /100
   	menus = {"frog legs" => 2375 }
-  	expect(STDOUT).to receive(:puts).with("\nFor target price of $#{sprintf('%.02f',target)} there are following menus of dishes:\n\n")
+  	expect(STDOUT).to receive(:puts).with("\nFor target price of $#{'%.02f' % target.fdiv(100)} there are following menus of dishes:\n\n")
   	expect(STDOUT).to receive(:puts).with("#{menus}")  	
 
   	cli.announce_combination(target, menus)
