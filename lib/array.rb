@@ -4,7 +4,8 @@ class Array
   end
 
   def reject_expensive(value)
-    self.reject! { |a| a > value}
+    self.select! { |a| a < value }
+    self
   end
 
   def each_less(limits_arr)

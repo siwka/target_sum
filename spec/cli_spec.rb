@@ -27,7 +27,9 @@ describe Cli do
 	end
 
   it "displays message that machine is thinking next move" do
-    expect(STDOUT).to receive(:puts).with('Machine is thinking if there is menu combination...')
+  	expect(STDOUT).to receive(:puts).with('===================================================')
+    expect(STDOUT).to receive(:puts).with('Machine is thinking ...')
+    expect(STDOUT).to receive(:puts).with('===================================================')
 
     cli.display_machine_thinking
   end
