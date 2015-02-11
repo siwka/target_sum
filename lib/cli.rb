@@ -7,6 +7,12 @@ class Cli
 
   def read_csv_file
     @csv_to_a = []
+    if arguments_any?
+      read_csv_to_array  
+    end
+  end
+
+  def read_csv_to_array
     CSV.foreach(ARGV.first, headers: false) do |row|
       @csv_to_a << row.map!{ |e| e.gsub(/[$]/,'') }
     end
@@ -62,19 +68,19 @@ class Cli
   end 
 
   def announce_combination(target, results)
-  	puts ">>>>>>>>>> * <<<<<<<<<<<<"  	
+    puts ">>>>>>>>>> * <<<<<<<<<<<<"  	
     puts "\nFOR THE TARGET PRICE OF $#{'%.02f' % target.fdiv(100)}, CHOICES ARE:\n\n"
     display_results(results)
   end
 
   def display_results(results)
-  	results.each_with_index do |r,i|
-  		puts ">>>>>>>>>>>  #{i+1} - option  <<<<<<<<<<<<<"
-  		puts "\nQTY\tENTREE:\t\tPRICE\n\n"
-  		r.each do |s|
-  			print "#{s[0]}  #{s[1].join(', ')}\t$#{s[2]}\n\n" if s[1].kind_of?(Array)
-  		end
-  	end
+    results.each_with_index do |r,i|
+      puts ">>>>>>>>>>>  #{i+1} - option  <<<<<<<<<<<<<"
+      puts "\nQTY\tENTREE:\t\tPRICE\n\n"
+      r.each do |s|
+        print "#{s[0]}  #{s[1].join(', ')}\t$#{s[2]}\n\n" if s[1].kind_of?(Array)
+      end
+    end
     puts "==================================================="
   end  
 end

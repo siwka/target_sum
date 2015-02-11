@@ -16,6 +16,13 @@ class Array
     self.select! { |arr| arr.each_less(limits_arr) }
   end
 
+  def calculate_limits(target, prices)
+    for i in (0..prices.length-1) do
+      self << (target / prices[i])
+    end
+    self
+  end
+
   def check_subsets_for_sum(prices, target)
     results = []
     self.each do |a|  #check for arrays with different length - test
@@ -27,16 +34,15 @@ class Array
   end
 
   def match_prices_with_entrees(full_menu, prices)
-    # prices.to_money
+    prices.to_money
     sample_meals = []
-    # self.each do |qty|   siwka - dlaczego to nie dzialalo?
     for i in (0..self.length-1) do
       qty = self[i]
       selected_prices = qty.select_nonzero_indexes.select_result_prices(prices)
       qty -= [0]
       qty.validate_eq_length(selected_prices)
       selected_prices.validate_eq_length(qty)
-      sample_meals += qty.match_with(full_menu, selected_prices)
+      sample_meals << qty.match_with(full_menu, selected_prices)
     end
     sample_meals
   end
