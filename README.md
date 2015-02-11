@@ -1,15 +1,16 @@
-<p>From a given set  of numbers list all subsets that add exactly to given total.</p>
+<p>From a given sequence  of numbers with precision 2 list all subsets that add exactly to given total.</p>
 
 <p>Generally we consider all possible solutions for equation:</p>
 
 <ul>
-    <li>x - set of numbers</li>
-    <li>a - quantity of numbers</li>
+    <li>X1     - sequence of numbers with precision 2 </li>
+    <li>X      - sequence of non-duplicate numbers x[i]</li>
+    <li>A      - sequence of quantities of numbers a[i]</li>
     <li>target - given sum</li>
-    <li>n - cardinal number of set (quantity of numbers in set)</li>
+    <li>n      - cardinal number of set (quantity of numbers in set)</li>
 </ul>
 
-<pre><code>  Sum a[i]x[i] = target for i in (0..n)
+<pre><code>  Sum a[i]x[i] = target     for i in (0..n)
 </code></pre>
 
 <p>Data is provided in csv file, in first row target sume is provided and in each following row a name and value.</p>
@@ -26,18 +27,12 @@ This is before different way will be provided to generalize permutation with rep
 
 <p>Program does not check for csv file expected data format.</p>
 
-<p>note: README.md will be improved after learning how to use mathematical symbols here.</p>
-
 <p>Run:</p>
-
-<pre><code>ruby working_menu.rb data.csv - working draft
-</code></pre>
-
-<p>program in progress:
-at the stage that it is giving solutions)</p>
 
 <pre><code>ruby bin/calculate.rb data.csv
 ruby bin/calculate.rb data1.csv
 ruby bin/calculate.rb data2.csv
 ruby bin/calculate.rb data3.csv    
 </code></pre>
+
+<p>note: README.md will be improved after learning how to use mathematical symbols here.</p>
