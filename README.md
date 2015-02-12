@@ -21,7 +21,7 @@
 
 <p>X is a subsequence selected from Y by elimination of duplicate values and each is less than *total*. In result each x[i] is given. Our goal is to find if above polynomial equation can be solved and if it is to give all sequences of values a[i]. We can define constrains for each element from A as follows:</p>
 
-<pre><code>  a[i] < target/x[i]     for each i in (0..n)
+<pre><code>  a[i] '<' target/x[i]     for each i in (0..n)
 </code></pre>
 
 <p>Data is provided in csv file. First row contains a target price and each following row provides a name and a value.</p>
