@@ -13,6 +13,13 @@
 <pre><code>  Sum a[i]x[i] = target     for i in (0..n)
 </code></pre>
 
+<p>X is selected subset of X1 without duplicated and values grater than total. This way x[i] is given. Our goal is to find if polynomial equation can be solved and if it is give all segences of values a[i]. We can define constrains for each element from A as follows:</p>
+
+<pre><code>  a[i] < target/x[i]     for each i in (0..n)
+</code></pre>
+
+<p>..</p>
+
 <p>Data is provided in csv file, in first row target sume is provided and in each following row a name and value.</p>
 
 <ol>
