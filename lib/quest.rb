@@ -2,10 +2,9 @@ require 'calculator'
 require 'array'
 
 class Quest
-attr_accessor :cli, :calculator
+attr_accessor :cli
 
   def initialize(cli)
-  	@calculator = Calculator.new
   	@full_menu = {}
   	@prices = Array.new
     @cli = cli
