@@ -11,12 +11,12 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices
   end
 
   def start
-  	cli.exit_with_error_message unless @cli.arguments_any?
-  	cli.read_csv_file
-  	@target = @cli.read_target
-  	cli.announce_bad_target if @target <= 0 # add_options prices vs total, etc
-  	@full_menu = @cli.read_menu
-  	@prices = @full_menu.values.read_prices.reject_expensive(@target)
+    cli.exit_with_error_message unless @cli.arguments_any?
+    cli.read_csv_file
+    @target = @cli.read_target
+    cli.announce_bad_target if @target <= 0 # add_options prices vs total, etc
+    @full_menu = @cli.read_menu
+    @prices = @full_menu.values.read_prices.reject_expensive(@target)
     @prices.nil? || @prices.empty?
   end
 
@@ -45,11 +45,11 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices
     @results = prices_subsets.match_prices_with_entrees(@full_menu, @prices)
   end
 
-	def finish
-		if @results.empty?
-			cli.announce_no_combination(@target)
-		else
-			cli.announce_combination(@target, @results)
-		end
-	end
+  def finish
+    if @results.empty?
+      cli.announce_no_combination(@target)
+    else
+      cli.announce_combination(@target, @results)
+    end
+  end
 end
