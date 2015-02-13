@@ -4,7 +4,6 @@ describe Cli do
   let(:cli) { described_class.new }
 
   it "should exit cleanly when no argv is used" do
-    argv=[" "]
     expect(lambda { cli.exit_with_error_message }).to raise_error SystemExit
   end
 
@@ -20,6 +19,23 @@ describe Cli do
     cli.announce_bad_target
   end
 
+  describe "#all_choices?" do
+    it "should return 'true' if user ipunt matches 'y'" do
+      ARGV[1] = 'y'
+      expect(cli.all_choices?).to eq(true)
+    end
+
+    it "should return 'false' if user ipunt matches 'n'" do
+      ARGV[1] = 'n'
+      expect(cli.all_choices?).to eq(false)
+    end
+
+    it "should return 'false' if user didn't provide ipunt" do
+      ARGV[1] =  nil
+      expect(cli.all_choices?).to eq(false)     
+    end  
+  end
+
   it "displays message that machine is thinking next move" do
     expect(STDOUT).to receive(:puts).with('===================================================')
     expect(STDOUT).to receive(:puts).with('Machine is thinking ...')
@@ -28,12 +44,23 @@ describe Cli do
     cli.display_machine_thinking
   end
 
-  it "displays message that there is no solution for target of $15.60" do
-    target = 1560
-    expect(STDOUT).to receive(:puts).with("\nThere is no combination of dishes that will be equal in cost to the target price of $#{'%.02f' % target.fdiv(100)}.\n\n")
+  describe "#announce_no_combination" do
+    it "displays message that there is no solution for target of $15.60" do
+      target = 1560
+      ARGV[1] = 'y'
+      expect(STDOUT).to receive(:puts).with(".\n\n")
 
-    cli.announce_no_combination(target)
-  end
+      cli.announce_no_combination(target)
+    end
+
+    it "displays message that there is no solution for target of $15.60" do
+      target = 1560
+      ARGV[1] = 'n'
+      expect(STDOUT).to receive(:puts).with(" for only one entree.\n\n")
+
+      cli.announce_no_combination(target)
+    end
+  end 
 
   it "displays message there is solution and list of menus" do
     target = 2375

@@ -21,7 +21,7 @@
 
 <p>X is a subsequence selected from Y by elimination of duplicate values and each is less than *total*. In result each x[i] is given. Our goal is to find if above polynomial equation can be solved and if it is to give all sequences of values a[i]. We can define constrains for each element from A as follows:</p>
 
-<pre><code>  a[i] '<' target/x[i]     for each i in (0..n)
+<pre><code>  a[i] 'less than' target/x[i]     for each i in (0..n)
 </code></pre>
 
 <p>Data is provided in csv file. First row contains a target price and each following row provides a name and a value.</p>
@@ -42,9 +42,11 @@ Generated set of arrays contains all candidates for solution.</li>
 <p>Run with provided data files:</p>
 
 <pre><code>ruby bin/calculate.rb data.csv
-ruby bin/calculate.rb data1.csv
-ruby bin/calculate.rb data2.csv
-ruby bin/calculate.rb data3.csv    
+ruby bin/calculate.rb data0.csv [y/n]
+ruby bin/calculate.rb data2[i].csv [y/n]
+    for i=(0..5)
+    y - for all possible choices
+    n / or don't add 2nd agrument - only the same dish
 </code></pre>
 
-<p>note: not easy to find sensible tool for mathematical symbols</p>
+<p>note: not easy to find sensible tool for mathematical symbols, tool that works :grey_question:</p> 

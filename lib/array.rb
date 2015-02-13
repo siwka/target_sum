@@ -16,6 +16,18 @@ class Array
     self.select! { |arr| arr.each_less(limits_arr) }
   end
 
+  def divisors_of(target)
+    # self.find_all { |a| target % a == 0 }
+    qty, div = [], []
+    self.each_with_index do |a,i|
+      if target % a == 0
+        qty << target / a
+        div << a
+      end
+    end
+    [qty, div]
+  end
+
   def calculate_limits(target, prices)
     for i in (0..prices.length-1) do
       self << (target / prices[i])
