@@ -35,6 +35,11 @@ describe Array do
     expect(result).to eq [580, 355, 335, 275, 215]
   end
 
+  it "returns divisors of target if exist in array" do
+    prices = [21, 15, 11, 7, 6, 3, 2]
+    expect(prices.divisors_of(21)).to eq [[1, 3, 7], [21, 7, 3]]
+  end
+
   it "calculate_limits(target, prices)" do
     expect([].calculate_limits(21, [7, 5, 2])).to eq [3, 4, 10]
   end

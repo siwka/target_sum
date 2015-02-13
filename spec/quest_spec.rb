@@ -1,4 +1,5 @@
 require 'quest'
+require 'cli'
 
 describe Quest do
   let(:cli)   { Cli.new }
@@ -23,10 +24,23 @@ describe Quest do
   end  
 
   context "while quest is ongoing" do
-    it "runs the quest" do
-      expect(quest).to receive(:run)
+    it "returns 'boring' meal containing of one entree that price is divider of target price" do
+      quest.full_menu = {"fruit"=>"3.00", "salad"=>"5.00", "fries"=>"3.03"}
+      quest.prices = [300, 500, 303]
+      quest.target = 600
+      expect(quest.run_boring_menu).to eq [[[2, ["fruit"], "3.00"]]]
+    end
 
-      quest.run
+    it "#run_permutation" do
+      if quest.cli.all_choices? == true
+      quest.full_menu = {"fruit"=>"3.00", "salad"=>"3.00",
+                         "fries"=>"2.50", "cake" =>"3.50"}
+      quest.prices = [300, 500, 250, 350]
+      quest.target = 600
+      expect(quest.run_permutation).to eq [
+                            [[1, ["fries"], "2.50"], [1, ["cake"], "3.50"]],
+                            [[2, ["fruit", "salad"], "3.00"]]]
+      end
     end
   end
 

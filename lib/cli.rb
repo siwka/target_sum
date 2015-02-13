@@ -43,6 +43,10 @@ class Cli
     puts "\nBad data in file. Try another file.\n\n"
   end
 
+  def all_choices?
+    ARGV[1] == 'y' ? true : false 
+  end
+
   def statistics(menu, target_price, max_qty)
     puts 
     display_menu(menu)
@@ -64,7 +68,8 @@ class Cli
   end
 
   def announce_no_combination(target)
-    puts "\nThere is no combination of dishes that will be equal in cost to the target price of $#{'%.02f' % target.fdiv(100)}.\n\n"
+    print "\nThere is no combination of dishes that will be equal in cost to the target price of $#{'%.02f' % target.fdiv(100)}"
+    puts ARGV[1] == 'y' ? ".\n\n" : " for only one entree.\n\n"
   end 
 
   def announce_combination(target, results)
