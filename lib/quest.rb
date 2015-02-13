@@ -18,7 +18,6 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices
   	cli.announce_bad_target if @target <= 0 # add_options prices vs total, etc
   	@full_menu = @cli.read_menu
   	@prices = @full_menu.values.read_prices.reject_expensive(@target)
-    # check_if_solution_night exist
     @prices.nil? || @prices.empty?
   end
 
