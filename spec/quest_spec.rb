@@ -21,7 +21,17 @@ describe Quest do
 
       quest.start
     end
-  end  
+
+    it "returns true if examples made it unsolvable" do
+      ARGV[0] = 'data_unsolvable.csv'
+      expect(quest.start).to eq true
+    end
+
+    it "returns false if examples made it solvable" do
+      ARGV[0] = 'data_solvable.csv'
+      expect(quest.start).to eq false
+    end
+  end
 
   context "while quest is ongoing" do
     it "returns 'boring' meal containing of one entree that price is divider of target price" do

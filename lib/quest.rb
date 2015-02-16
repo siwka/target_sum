@@ -7,6 +7,8 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices
   def initialize(cli)
     @full_menu = {}
     @prices = Array.new
+    @values = Array.new
+    @calculator = Calculator.new
     @cli = cli
   end
 
@@ -17,7 +19,9 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices
     cli.announce_bad_target if @target <= 0 # add_options prices vs total, etc
     @full_menu = @cli.read_menu
     @prices = @full_menu.values.read_prices.reject_expensive(@target)
-    @prices.nil? || @prices.empty?
+    @values, solvable = @calculator.possible_solution_exist?(@prices, @target) unless @prices.empty?
+    @prices = [] unless solvable
+    @prices.empty?
   end
 
   def run_boring_menu
@@ -32,7 +36,6 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices
   def run_permutation
     return unless cli.all_choices?
     limit_entree_qty = []
-    # @calculator.adjust_limits?(@prices, @target)            
     limit_entree_qty.calculate_limits(@target, @prices)
     max_qty = Calculator.new
     numers_range_for_choice = max_qty.adjust_limits(limit_entree_qty, @prices)
@@ -43,6 +46,10 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices
     perm.reject_each_more_than(limit_entree_qty)
     prices_subsets = perm.check_subsets_for_sum(@prices, @target)
     @results = prices_subsets.match_prices_with_entrees(@full_menu, @prices)
+  end
+
+  def run_knapsack
+
   end
 
   def finish
