@@ -49,7 +49,7 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices, :values
 
   def run_knapsack
     # solution is not optimal, Knapsack algorithm passes tests
-    # knapsack works as expected although my application to the exercise has probably resoning nadequacies?
+    # knapsack works as expected although my application to the exercise has probably resoning inadequacies?
 
     # @values = Array.new(@prices.length, 1) # does not support receiving closest total value to target
     # @prices.shuffle!   # run_knapsack results vary on array elements ordered differently
