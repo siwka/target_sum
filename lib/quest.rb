@@ -48,7 +48,9 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices, :values
   end
 
   def run_knapsack
-    # knapsack works as expected but probably my application to the exercise has resoning nadequacies
+    # solution is not optimal, Knapsack algorithm passes tests
+    # knapsack works as expected although my application to the exercise has probably resoning nadequacies?
+
     # @values = Array.new(@prices.length, 1) # does not support receiving closest total value to target
     # @prices.shuffle!   # run_knapsack results vary on array elements ordered differently
     knapsack, keepitem = @calculator.knapsack_no_repetition(@target, @prices, @values)
@@ -75,7 +77,7 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices, :values
     # puts @target
     # print @results
     # puts "\n********************\n"
-    @results
+    # @results
   end
 
   def finish
