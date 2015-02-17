@@ -106,5 +106,12 @@ describe Array do
 
   it "returns array containing elemtnst of even indexes" do
     expect([0, 1, 2, 3, 4, 5, 6, 7, 8].even_values).to eq [0, 2, 4, 6, 8]
-  end  
+  end
+
+  it "returns prices on given indexes" do
+    ind = [3, 4, 1]
+    prices = [75, 150, 250, 35, 10, 100]
+
+    expect(ind.retireve_from(prices)).to eq [35, 10, 150]
+  end
 end

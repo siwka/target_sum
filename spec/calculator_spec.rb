@@ -54,4 +54,77 @@ describe Calculator do
       expect(lambda { calculator.adjust_limits(max_qty, prices) }).to raise_error SystemExit 
     end
   end
+
+  context "#knapsack_no_repetition" do
+    it "one: returns knapsack & keepitem - tracking solution array for:" do
+      t = 10
+      p = [ 7,   8,   6,  4,  3,   9]
+      v = [75, 150, 250, 35, 10, 100]
+
+      knapsack =[[0, 0, 0, 0,   0,  0,   0,   0,   0,   0,   0],
+                 [0, 0, 0, 0,   0,  0,   0,  75,  75,  75,  75],
+                 [0, 0, 0, 0,   0,  0,   0,  75, 150, 150, 150],
+                 [0, 0, 0, 0,   0,  0, 250, 250, 250, 250, 250],
+                 [0, 0, 0, 0,  35, 35, 250, 250, 250, 250, 285],
+                 [0, 0, 0, 10, 35, 35, 250, 250, 250, 260, 285],
+                 [0, 0, 0, 10, 35, 35, 250, 250, 250, 260, 285]]
+
+      keepitem =[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                 [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2],
+                 [0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3],
+                 [0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 4],
+                 [0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0],
+                 [0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0]]
+
+      expect(calculator.knapsack_no_repetition(t,p,v)).to eq [knapsack, keepitem]
+    end
+
+    it "two: returns knapsack & keepitem - tracking solution array for:" do
+      t = 5
+      p = [3, 2, 1]
+      v = [5, 3, 4]
+
+      knapsack =[[0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 5, 5, 5],
+                 [0, 0, 3, 5, 5, 8],
+                 [0, 4, 4, 7, 9, 9]]
+
+      keepitem =[[0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 1, 1, 1],
+                 [0, 0, 2, 0, 0, 2],
+                 [0, 3, 3, 3, 3, 3]]
+
+      expect(calculator.knapsack_no_repetition(t,p,v)).to eq [knapsack, keepitem]
+    end
+  end
+
+  context "#retireve_solution_from" do
+    it "returns items 3 & 2 for following data:" do
+      target = 10
+      prices = [ 7,   8,   6,  4,  3,   9]
+
+      keepitem =[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                 [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2],
+                 [0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3],
+                 [0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 4],
+                 [0, 0, 0, 5, 0, 0, 0, 0, 0, 5, 0],
+                 [0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0]]
+
+      expect(calculator.retireve_solution_from(keepitem, target, prices)).to eq [3, 2]
+    end
+
+    it "returns items 2 & 0 for following data:" do
+      target = 5
+      prices = [3, 2, 1]
+
+      keepitem =[[0, 0, 0, 0, 0, 0],
+                 [0, 0, 0, 1, 1, 1],
+                 [0, 0, 2, 0, 0, 2],
+                 [0, 3, 3, 3, 3, 3]]
+
+      expect(calculator.retireve_solution_from(keepitem, target, prices)).to eq [2, 0]
+    end
+  end   
 end

@@ -2,12 +2,11 @@ require 'calculator'
 require 'array'
 
 class Quest
-attr_accessor :cli, :calculator, :full_menu, :target, :prices
+attr_accessor :cli, :calculator, :full_menu, :target, :prices, :values
 
   def initialize(cli)
     @full_menu = {}
-    @prices = Array.new
-    @values = Array.new
+    @prices, @values, @results = Array.new
     @calculator = Calculator.new
     @cli = cli
   end
@@ -49,7 +48,34 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices
   end
 
   def run_knapsack
+    # knapsack works as expected but probably my application to the exercise has resoning nadequacies
+    # @values = Array.new(@prices.length, 1) # does not support receiving closest total value to target
+    # @prices.shuffle!   # run_knapsack results vary on array elements ordered differently
+    knapsack, keepitem = @calculator.knapsack_no_repetition(@target, @prices, @values)
+    result_items = @calculator.retireve_solution_from(keepitem, @target, @prices)
+    selected_prices = result_items.retireve_from(@prices)
 
+    # puts "\nprices------\n"
+    # print @prices
+    # puts "\ntotal------\n"
+    # print @prices.reduce(:+)
+    # puts "\n========\n"
+    # print result_items
+    # puts "\nselected prices------\n"
+    # print selected_prices
+    # puts "\ntotal------\n"
+    # puts selected_prices.reduce(:+)
+
+    if selected_prices.reduce(:+) == @target
+      @results = Array.new(selected_prices.length,1).match_with(@full_menu, selected_prices.to_money)
+    else
+      @results = []
+    end
+    # puts "\n********************\n"
+    # puts @target
+    # print @results
+    # puts "\n********************\n"
+    @results
   end
 
   def finish

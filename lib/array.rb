@@ -95,4 +95,10 @@ class Array
   def even_values
     self.values_at(* self.each_index.select {|i| i.even?})
   end
+
+  def retireve_from(prices)
+    result_prices = []
+    self.each_with_index { |ind|  result_prices << prices[ind] }
+    result_prices
+  end
 end
