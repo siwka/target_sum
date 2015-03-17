@@ -48,8 +48,9 @@ attr_accessor :cli, :calculator, :full_menu, :target, :prices, :values
   end
 
   def run_knapsack
-    # solution is not optimal, Knapsack algorithm passes tests
-    # knapsack works as expected although my application to the exercise has probably resoning inadequacies?
+    # Knapsack algorithm passes tests
+    # knapsack works as expected. This solution would made sense if we use val array as e.g. calories intake.
+    # In this case we'd look for solution of max calorie intake with price limit set by target.
 
     # @values = Array.new(@prices.length, 1) # does not support receiving closest total value to target
     # @prices.shuffle!   # run_knapsack results vary on array elements ordered differently
